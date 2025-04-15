@@ -14,13 +14,13 @@ public:
     void sendMessageToPython(const char* message);
     void send1DArrayToPython(const char* varname, int* arr, int len);  
     void sendArrayToPython(const char* varname, int* arr, int a, int b, int c);   
-    void sendMessageWithVarToPython(const char* message, int var);
+    void sendMessageWithVarToPython(const String message, int var);
 
     void receiveParameters();
     void printParameters(); 
 
     void addParameters();
-    // void addParameters_manual(String* params, int len);
+    void addParameters_manual(String* params, int len);
     int retrieve(String param_name);
     void resetParameters();
 

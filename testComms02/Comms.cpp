@@ -74,7 +74,7 @@ void Comms::sendArrayToPython(const char* varname, int* arr, int a, int b, int c
   Serial.println(_buffer);
 }
 
-void Comms::sendMessageWithVarToPython(const char* message, int var)
+void Comms::sendMessageWithVarToPython(const String message, int var)
 {
   // Serial.println(); // buffer line print
   Serial.print(_buffer); // buffer characters
@@ -89,11 +89,12 @@ void Comms::sendMessageWithVarToPython(const char* message, int var)
 }
 
 void Comms::printParameters() {
-    Serial.println("here are parameters");
+    // Serial.println("here are parameters");
     for (int i =0; i < num_params; i++) {
-        Serial.print(param_names[i]);
-        Serial.print(":");
-        Serial.println(params_value[i]);
+      sendMessageWithVarToPython(param_names[i], params_value[i]);
+        // Serial.print(param_names[i]);
+        // Serial.print(":");
+        // Serial.println(params_value[i]);
     }
 }
 
@@ -158,7 +159,7 @@ void Comms::addParameters_manual(String* params, int len) {
     for (int idx = 0; idx < len; idx++){
         param_names[idx] = params[idx];
     }
-    num_params = len
+    num_params = len;
 }
 
 void Comms::resetParameters() {

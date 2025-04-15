@@ -17,6 +17,10 @@ void setup() {
   }
 
   Serial.begin(250000);
+
+  //Testing the manual add parameters function. 
+  String testParams[] = {"FBshift", "baseline", "offset", "width"};
+  Comms.addParameters_manual(testParams, 4);
 }
 
 void loop() {
