@@ -17,10 +17,12 @@ void setup() {
   }
 
   Serial.begin(250000);
+  delay(100);
+  Serial.println("Serial is now up and ready");
 
   //Testing the manual add parameters function. 
-  String testParams[] = {"FBshift", "baseline", "offset", "width"};
-  Comms.addParameters_manual(testParams, 4);
+  // String testParams[] = {"FBshift", "baseline", "offset", "width"};
+  // Comms.addParameters_manual(testParams, 4);
 }
 
 void loop() {
@@ -40,6 +42,9 @@ void loop() {
     }
     else if (message=="sendtest") {
       Comms.send1DArrayToPython("testArray", testArray, nvalues);
+    }
+    else if (message=="testmsg") {
+      Comms.sendMessageWithVarToPython("Testing testing", 21);
     }
     else if (message=="display") {
       for (int i = 0; i < Comms.num_params; i++){
