@@ -180,12 +180,20 @@ void Comms::readCharUntil(char* arr, char terminator) {
 }
 
 void Comms::receiveParameters() {
+
+    delay(5);
+    while (Serial.available()) {
+
   int num_received = 0; 
 
   while (num_received < num_params) {
     if (Serial.available()) {
       char codon[20];
       readCharUntil(codon, ';');
+      codon[strcspn(codon, "\r\n")] = '\0';
+      if (codon[0] == '\0') {
+        continue;
+      }
       int param_idx = findInArray(codon);
       if (param_idx >= 0) {
         char value[20];
@@ -201,6 +209,7 @@ void Comms::receiveParameters() {
         Serial.print("Invalid Codon, need more param values;");
       }
     }
+  }
   }
 }
 
